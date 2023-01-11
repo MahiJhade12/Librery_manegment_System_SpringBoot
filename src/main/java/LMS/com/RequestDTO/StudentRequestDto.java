@@ -1,4 +1,4 @@
-package LMS.com.StudentRequestDTO;
+package LMS.com.RequestDTO;
 
 import jakarta.persistence.Column;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StudentRequest {
+public class StudentRequestDto {
 
     private int age;
 
@@ -16,7 +16,7 @@ public class StudentRequest {
     @Column(columnDefinition = "varchar(255) default 'India'")
     private String country;
 
-    @Column(name = "school_email",unique = true,nullable = false)
+    @Column(name = "school_email",unique = true)
     private String email;
 
 }

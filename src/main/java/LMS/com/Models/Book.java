@@ -1,37 +1,33 @@
 package LMS.com.Models;
 
+import LMS.com.Enums.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-
 @Entity
 @Table
-@NoArgsConstructor
 @Builder
-@Data
 @AllArgsConstructor
-public class Author {
+@Data
+@NoArgsConstructor
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private  int id;
     private String name;
 
-    private int age;
+    @Enumerated(value = EnumType.STRING)
+    private Genre genre;
 
-    private String country;
+    @ManyToOne
+    @JoinColumn
+    private  Author author;
 
-    @Column(unique = true)
-    private String email;
-
-
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Book> wittenBooks;
-
+    @ManyToOne
+    @JoinColumn
+    private  Card card;
 }

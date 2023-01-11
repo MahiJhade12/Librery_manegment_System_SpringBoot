@@ -1,8 +1,7 @@
 package LMS.com.Controller;
 
-import LMS.com.Models.Student;
 import LMS.com.Service.StudentService;
-import LMS.com.StudentRequestDTO.StudentRequest;
+import LMS.com.RequestDTO.StudentRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +14,10 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @RequestMapping("/add_student")
-    public ResponseEntity<String> addStudent(@RequestBody StudentRequest studentRequest){
-        studentService.createStudent(studentRequest);
-        return new ResponseEntity<>("Student added", HttpStatus.CREATED);
+    @PostMapping ("/add_student")
+    public ResponseEntity<String> addStudent(@RequestBody StudentRequestDto studentRequestDto){
+      String result=  studentService.createStudent(studentRequestDto);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
 

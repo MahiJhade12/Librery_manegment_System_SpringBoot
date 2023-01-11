@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "student_card")
 @Getter
@@ -16,8 +18,6 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int fine;
-    private String expiry;
 
     @Enumerated(value = EnumType.STRING)
     private CardStatus cardStatus;
@@ -26,6 +26,7 @@ public class Card {
     @JoinColumn  //by default, it has primary key
     private Student studentInfo;
 
-
+   @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    private List<Book> bookIssued;
 
 }
